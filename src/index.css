@@ -1,13 +1,27 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+*{
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.auth-wrapper .form-control:focus {
+  boder-color: #167bff;
+  box-shadow: none;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forget-password,
+.forget-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: gray;
+  margin:0;
+}
+
+.forget-password a {
+  color: gray;
 }
