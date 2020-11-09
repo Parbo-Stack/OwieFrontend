@@ -13,11 +13,12 @@ import BoardAdmin from "./components/boad-admin.component";
 import ReadStory from "./container/ReadStory/readstory.component";
 import FinishStory from "./stories/finishestory.component";
 import WriteStory from "./stories/writestory.component";
-import AddStory from "./components/addstory.component";
-import Story from "./components/editstory.component"
-import StoriesList from "./components/storylist.component";
-import About from "./pages/about"
-import Post from "./components/StoryPost"
+import AddStory from "./components/AddStory/addstory.component";
+import Story from "./components/EditStory/editstory.component"
+import StoriesList from "./components/StoryList/storylist.component";
+import About from "./pages/about";
+import Post from "./components/StoryPost";
+import EditStory from "./components/EditStory/editstory.component";
 
 import FileUpload from "./components/Fileupload";
 
@@ -134,11 +135,12 @@ class App extends Component {
               <Route path="/writestory" component={WriteStory} />
               <Route path="/user" component={BoardUser} />
               <Route path="/admin" component={BoardAdmin} />
-              <Route path="/AddStory" component={AddStory} />
               <Route exact path={["/","/storieslist"]} component={StoriesList} />
+              <Route exact path="/AddStory" component={AddStory} />
+              <Route path="/editstory/:id" component={EditStory}/>
               <Route path="/story/:id" component={Story} />
               <Route path="/about/" component={About} />
-              <Route path='/post/:id' component={Post}/>
+              <Route path='/editstory/:id' component={EditStory}/>
               <Route path='/fileupload' component={FileUpload}/>
               <Route path='/post/:id' component ={Post}/>
             </Switch>
