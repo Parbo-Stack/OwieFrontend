@@ -4,8 +4,12 @@ const getAll = async () => {
     return await http.get('/stories');
 };
 
-const get =  id => {
-    return http.get(`/stories/${id}`);
+const getById = async id => {
+    return await http.get(`/stories/${id}`);
+};
+
+const findByTitle = async (title) => {
+    return await http.get(`/findbytitle?title=${title}`);
 };
 
 const createStory = async (data) => {
@@ -24,13 +28,9 @@ const removeAll = async () => {
     return await http.delete(`/story`);
 };
 
-const findByTitle = async (title) => {
-    return await http.get(`/findbytitle?title=${title}`);
-};
-
 export default {
     getAll,
-    get,
+    getById ,
     createStory,
     updateStory,
     deleteById,

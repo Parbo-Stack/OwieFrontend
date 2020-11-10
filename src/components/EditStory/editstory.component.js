@@ -12,21 +12,22 @@ const EditStory = props => {
     };
     const [currentStory, setCurrentStory] = useState(initialStoryState);
     const [message, setMessage] = useState("");
-
-    const getStory = id => {
-        StoryService.get(id)
-            .then(response => {
-                setCurrentStory(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
+    const [id, setId] = useState("");
 
     useEffect(() => {
-        getStory(props.match.params.id);
-    }, [props.match.params.id]);
+        const get = () => {
+            StoryService.getById(id)
+                .then(response => {
+                    setCurrentStory(response.data);
+                    console.log(response.data);
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        };
+        get(props.match.params.id);
+    }, [id, props.match.params.id]);
+
 
     const handleInputChange = event => {
         const {name, value} = event.target;
