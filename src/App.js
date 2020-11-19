@@ -4,23 +4,21 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import AuthService from "./services/auth.service";
-import Login from "./components/login.component";
-import Register from "./components/register.component";
-import Home from "./pages/home.component";
+import Login from "./components/Register/login/login.component";
+import Register from "./components/Register/register.component";
+import Home from "./Pages/Home/home.component";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardAdmin from "./components/boad-admin.component";
-import ReadStory from "./container/ReadStory/readstory.component";
-import FinishStory from "./stories/finishestory.component";
-import WriteStory from "./stories/writestory.component";
+import ReadStory from "./ReadStory/index";
+import FinishStory from "./FinishStory";
+import FinishStoryPost from './FinishStory/FinishStoryPost/FinishStoryPost'
+import WriteStory from "./container/WritePost";
 import AddStory from "./components/AddStory/addstory.component";
-import Story from "./components/EditStory/editstory.component"
 import StoriesList from "./components/StoryList/storylist.component";
-import About from "./pages/about";
-import Post from "./components/StoryPost";
+import About from "./Pages/About/about";
 import EditStory from "./components/EditStory/editstory.component";
-
-import FileUpload from "./components/Fileupload";
+import ReadStoryPost from "./ReadStory/ReadStoryPost/index"
 
 class App extends Component {
   constructor(props) {
@@ -130,22 +128,22 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path={["/","/storieslist"]} component={StoriesList} />
+              <Route exact path="/addStory" component={AddStory} />
               <Route path="/readstory" component={ReadStory}/>
+              <Route path="/readstorypost/:storyId" component={ReadStoryPost}/>
               <Route path="/finishstory" component={FinishStory} />
+              <Route path="/finishstorypost/:storyId" component={FinishStoryPost}/>
               <Route path="/writestory" component={WriteStory} />
               <Route path="/user" component={BoardUser} />
               <Route path="/admin" component={BoardAdmin} />
-              <Route exact path={["/","/storieslist"]} component={StoriesList} />
-              <Route exact path="/AddStory" component={AddStory} />
               <Route path="/editstory/:id" component={EditStory}/>
-              <Route path="/story/:id" component={Story} />
               <Route path="/about/" component={About} />
-              <Route path='/editstory/:id' component={EditStory}/>
-              <Route path='/fileupload' component={FileUpload}/>
-              <Route path='/post/:id' component ={Post}/>
             </Switch>
           </div>
         </div>
+
+
     );
   }
 }

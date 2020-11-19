@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import StoryService from "../../services/story.service";
 import {Link} from "react-router-dom";
-
+import './styles.css'
 const StoriesList = () => {
     const [stories, setStories] = useState([]);
     const [currentStory, setCurrentStory] = useState(null);
@@ -60,6 +60,10 @@ const StoriesList = () => {
                 console.log(e);
             });
     };
+
+    // const test=() =>{
+    //     console.log(currentStory.id);
+    //     };
     return (
         <div className="list row">
             <div className="col-12 col-lg-6 offset-lg-3">
@@ -140,8 +144,9 @@ const StoriesList = () => {
                             </label>{" "}
                             {currentStory.published ? "Published" : "Pending"}
                         </div>
-                        <Link
-                            to={"/editstory/" + currentStory.id}
+
+                        <Link//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
+                            to={"/editstory/" + currentStory.storyId}
                             className="badge badge-warning"
                         >
                             Edit

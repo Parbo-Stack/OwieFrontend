@@ -31,7 +31,7 @@ label {
 }
 
 .navbar-dark {
-    background-color: #20293F !important;
+    background-color: cornflowerblue !important;
 }
 
 .navbar-nav > li {
@@ -49,6 +49,7 @@ body {
     font-weight: bolder;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     width: 100%;
+    margin:50px;
 }
 
 .App, #root, .auth-wrapper {

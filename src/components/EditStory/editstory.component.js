@@ -12,21 +12,21 @@ const EditStory = props => {
     };
     const [currentStory, setCurrentStory] = useState(initialStoryState);
     const [message, setMessage] = useState("");
-    const [id, setId] = useState("");
+
+    const getStory = id => {
+        StoryService.getById(id)
+            .then(response => {
+                setCurrentStory(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
 
     useEffect(() => {
-        const get = () => {
-            StoryService.getById(id)
-                .then(response => {
-                    setCurrentStory(response.data);
-                    console.log(response.data);
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        };
-        get(props.match.params.id);
-    }, [id, props.match.params.id]);
+        getStory(props.match.params.id);
+    }, [props.match.params.id]);
 
 
     const handleInputChange = event => {
@@ -35,15 +35,15 @@ const EditStory = props => {
     };
 
     const updatePublished = status => {
-        var data = {
-            id: currentStory.id,
+        const data = {
+            storyId: currentStory.storyId,
             title: currentStory.Title,
             body: currentStory.body,
             authorId: currentStory.authorId,
             published: status
         };
-
-        StoryService.updateStory(currentStory.id, data)
+//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
+        StoryService.updateStory(currentStory.storyId, data)
             .then(response => {
                 setCurrentStory({...currentStory, published: status})
                 console.log(response.data);
@@ -52,9 +52,9 @@ const EditStory = props => {
                 console.log(e);
             });
     };
-
+//de id is undefined omdat het de id niet herkent als id maar als b.v storyId
     const updateStory = () => {
-        StoryService.updateStory(currentStory.id, currentStory)
+        StoryService.updateStory(currentStory.storyId, currentStory)
             .then(response => {
                 console.log(response.data);
                 setMessage("The story was updated successfully!");
@@ -65,10 +65,11 @@ const EditStory = props => {
     };
 
     const deleteStory = () => {
-        StoryService.deleteById(currentStory.id)
+        StoryService.deleteById(currentStory.storyId)
             .then(response => {
                 console.log(response.data);
-                props.history.push("/editstory");
+                props.history.push("/storieslist");
+                console.log(props)
             })
             .catch(e => {
                 console.log(e);
@@ -84,13 +85,12 @@ const EditStory = props => {
                         <div className="form-group">
                             <input
                                 type="text"
-                                className="form-control my-3"
+                                className="form-control"
                                 id="title"
+                                name="title"
                                 required
                                 value={currentStory.title}
                                 onChange={handleInputChange}
-                                placeholder="Story Title"
-                                name="title"
                             />
                         </div>
                         <textarea
@@ -144,7 +144,9 @@ const EditStory = props => {
                         </button>
                     )}
 
-                    <button className="badge badge-danger mr-2" onClick={deleteStory}>
+                    <button
+                        className="badge badge-danger mr-2"
+                        onClick={deleteStory}>
                         Delete
                     </button>
 

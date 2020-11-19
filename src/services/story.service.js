@@ -3,9 +3,9 @@ import http from "../http-common"
 const getAll = async () => {
     return await http.get('/stories');
 };
-
-const getById = async id => {
-    return await http.get(`/stories/${id}`);
+//props hier doorgeven omdat het de id niet erkent dus als props geeft hij het door
+const getById = async (props) => {
+    return await http.get(`/stories/${props}`);
 };
 
 const findByTitle = async (title) => {
@@ -20,8 +20,8 @@ const updateStory = async (id, data) => {
     return await http.put(`/story/${id}`, data);
 };
 
-const deleteById = async (id) => {
-    return await http.delete(`/story/${id}`);
+const deleteById = async (props) => {
+    return await http.delete(`/story/${props}`);
 };
 
 const removeAll = async () => {

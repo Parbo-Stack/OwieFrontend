@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import StoryDataService from "../../services/story.service";
-import './addstory.css'
+import './styles.css'
 
 const AddStory = () => {
     const initialStoryState = {
@@ -8,6 +8,7 @@ const AddStory = () => {
         title: "",
         body: "",
         authorId: "",
+        byte:"",
         datePublished: new Date()
     };
     const [story, setStory] = useState(initialStoryState);
@@ -23,6 +24,7 @@ const AddStory = () => {
             title: story.title,
             body: story.body,
             authorId: story.authorId,
+            byte:story.byte,
             datePublished: story.datePublished,
         };
 
@@ -34,6 +36,7 @@ const AddStory = () => {
                     body: response.data.body,
                     authorId: response.data.authorId,
                     datePublished: response.data.datePublished,
+                    byte:response.byte,
                     published: response.data.published
                 });
                 setSubmitted(true);
